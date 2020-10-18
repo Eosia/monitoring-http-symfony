@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="my-5 text-center">Ajouter un site</h1>
+    <!--formulaire d'ajout d'un nouveau site-->
+    {{ form_start(form) }}
+
+    <div class="row">
+            <div class="col-6">
+                {{ form_row(form.name) }}
+            </div>
+            
+            <div class="col-6">
+                 {{ form_row(form.url) }}
+            </div>
+
+            <div class="col-12 text-center my-3">
+                {{ form_row(form.submit) }}
+            </div>
+    </div>
+
+    {{form_end(form) }}
+</div>
+
+{% endblock %}

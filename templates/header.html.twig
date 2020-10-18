@@ -1,0 +1,60 @@
+<style>
+
+    a{
+        color: white;
+    }
+
+    a:hover{
+        text-decoration: none;
+    }
+
+</style>
+
+<nav class="navbar navbar-inverse bg-dark">
+    <div class ="container-fluid">
+        <div class="navbar-header">
+            <a href="{{ path("home") }}" class="navbar-brand">
+                <i class="fas fa-home">
+                    Accueil
+                </i>
+            </a>
+        </div>
+
+        <ul class="nav navbar-nav">
+            <li class="active">
+                <a href="{{ path("admin_dashboard") }}">DASHBOARD</a>
+            </li>
+        </ul>
+
+        {% if app.user %}
+
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{{ path("logout") }}">Déconnexion</a>
+                </li>
+            </ul>
+
+        {% else %}
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{{ path("login") }}">Connexion</a>
+                </li>
+            </ul>
+
+        {% endif %}
+
+    </div>
+</nav>
+
+<div class="container alerts mt-3">
+    {% for label, messages in app.flashes %}
+        <div class="alert alert-{{ label }} alert-dismissible show">
+            {% for message in messages %}
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
