@@ -21,54 +21,29 @@ class AppFixtures extends Fixture
 
         $admin = new Admin();
         $admin->setEmail('kevin.eosiaweb@gmail.com')
-                ->setPassword('toor');
+                ->setPassword('###TangoDown!!!');
         $encoded = $this->encoder->encodePassword($admin, $admin->getPassword());
         $admin->setPassword($encoded);
         $manager->persist($admin);
 
         $website = new Website();
-        $website->setName('bes-webdev.xyz')
-            ->setUrl('https://www.bes-webdev.xyz');
+        $website->setName('beswebdev.xyz')
+            ->setUrl('https://beswebdev.xyz');
         $manager->persist($website);
 
         $website = new Website();
-        $website->setName('ww1.FreedomLeaks')
-            ->setUrl('http://139.99.24.70');
+        $website->setName('googleBe')
+            ->setUrl('https://www.google.be');
         $manager->persist($website);
 
         $website = new Website();
-        $website->setName('ww3.FreedomLeaks')
-            ->setUrl('http://93.95.228.180');
+        $website->setName('facebook')
+            ->setUrl('https://www.facebook.com');
         $manager->persist($website);
 
         $website = new Website();
-        $website->setName('ww4.FreedomLeaks')
-            ->setUrl('http://95.111.236.51');
-        $manager->persist($website);
-
-        $website = new Website();
-        $website->setName('ww5.FreedomLeaks')
-            ->setUrl('http://199.16.128.41');
-        $manager->persist($website);
-        
-        $website = new Website();
-        $website->setName('cloud.FreedomLeaks')
-            ->setUrl('https://cloud.freedomleaks.com');
-        $manager->persist($website);
-
-        $website = new Website();
-        $website->setName('share.FreedomLeaks')
-            ->setUrl('https://share.freedomleaks.com');
-        $manager->persist($website);
-
-        $website = new Website();
-        $website->setName('mail.FreedomLeaks')
-            ->setUrl('https://mail.freedomleaks.com');
-        $manager->persist($website);
-
-        $website = new Website();
-        $website->setName('downsec.be')
-            ->setUrl('https://www.downsec.be');
+        $website->setName('youtube')
+            ->setUrl('https://www.youtube.com');
         $manager->persist($website);
 
         $manager->flush();
