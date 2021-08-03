@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-4" style="margin-left: 25%">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Connexion
+                        </h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <form action="{{ path('login') }}" method="POST">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Email" name="_username"/>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Mot de Passe" name="_password"/>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                        <input type="checkbox" aria-label="Checkbox for following text input" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-success btn-lock">
+                                    <i class="fas fa-user-lock"></i>
+                                    Me connecter
+                                </button>
+
+                                {% if error %}
+                                    <div class="alert alert-warning mt-5 text-center">
+                                        Authentification échouée, identifiants invalides
+                                    </div>
+                                {% endif %}
+
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

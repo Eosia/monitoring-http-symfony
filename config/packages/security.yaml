@@ -1,0 +1,36 @@
+security:
+    encoders:
+        App\Entity\Admin:
+            algorithm: bcrypt
+
+    providers:
+        users_in_memory: { memory: null }
+        auth:
+            entity:
+                class: App\Entity\Admin
+                property: email
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        admin: 
+            pattern: ^/admin
+            anonymous: true
+
+            provider: auth
+
+            form_login:
+                login_path: login
+                check_path: login
+                default_target_path: admin_dashboard
+
+            logout:
+                path: logout
+                target: login
+
+        main:
+            anonymous: true
+    access_control:
+         - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }

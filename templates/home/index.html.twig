@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eosiaweb Monitoring{% endblock %}
+
+{% block body %}
+
+    <style>
+        .element {
+            width: 33%;
+        }
+        .conteneur{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    </style>
+    <div class="container">
+    
+        <div class="head text-center my-5">
+            <h1>Accueil</h1>
+            <h3>Votre site de monitoring en ligne</h3>
+        </div>
+
+
+
+        <div class="conteneur">       
+            {% for currentStatus in status %}
+            
+
+
+            <!-- bloc vert -->
+
+                {% if currentStatus.code == 200 or currentStatus.code == 301 or currentStatus.code == 302 %}
+
+
+            <div class="element px-3 col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <div class="card text-white mb-3 website-card bg-success">
+
+                    <div class="card-header website-card-title text-center my-2">
+                        <h4>
+                            {{ currentStatus.website.name }}
+                        </h4>
+                        <small>
+                            {{ currentStatus.website.url }}
+                        </small>
+                    </div>
+
+                    <div class="card-body my-1">
+                        <div class="website-card-code text-center">
+                            <p class="text-center font-weight-bold mb-2">HTTP: {{ currentStatus.code }}</p>                            
+                            <div class="text-center bg-succes">
+                                <i class="fas fa-check-circle my-3"></i>
+                                <p class="text-white my-1 pb-1 font-weight-bold">EN LIGNE</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card-footer text-center">
+                        <a href="{{ path('website_show', {'id': currentStatus.website.id}) }}" class="btn btn-lg btn-white">
+                            Voir la fiche
+                        </a>
+                    </div>
+                </div>
+            </div>
+                <!-- bloc vert -->
+
+
+            <!-- bloc jaune -->
+
+                {% elseif currentStatus.code == 404 or currentStatus.code == 403 %}
+
+            <div class="element px-3 col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <div class="card text-white mb-3 website-card bg-warning">
+
+                    <div class="card-header website-card-title text-center my-2">
+                        <h4>
+                            {{ currentStatus.website.name }}
+                        </h4>
+                        <small>
+                            {{ currentStatus.website.url }}
+                        </small>
+                    </div>
+
+                    <div class="card-body my-1">
+                        <div class="website-card-code text-center">
+                            <p class="text-center font-weight-bold mb-2">HTTP: {{ currentStatus.code }}</p>
+
+                            <div class="text-center bg-warning">
+                                <i class="fas fa-exclamation-triangle my-3"></i>
+                                <p class="text-white my-1 pb-1 font-weight-bold">PROBLEME !</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer text-center">
+                        <a href="{{ path('website_show', {'id': currentStatus.website.id}) }}" class="btn btn-lg btn-white">
+                            Voir la fiche
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- bloc jaune -->
+
+
+                {% else %}
+                <!-- bloc rouge -->
+            <div class="element px-3 col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <div class="card text-white mb-3 website-card bg-danger">
+
+                    <div class="card-header website-card-title text-center my-2">
+                        <h4>
+                            {{ currentStatus.website.name }}
+                        </h4>
+                        <small>
+                            {{ currentStatus.website.url }}
+                        </small>
+                    </div>
+
+                    <div class="card-body my-1">
+                        <div class="website-card-code text-center">
+                            <p class="text-center font-weight-bold mb-2">HTTP: {{ currentStatus.code }}</p>
+                            <div class="text-center bg-danger">
+                                <i class="fas fa-exclamation-circle my-3"></i>
+                                <p class="text-white my-1 pb-1 font-weight-bold">DOWN !</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card-footer text-center">
+                        <a href="{{ path('website_show', {'id': currentStatus.website.id}) }}" class="btn btn-lg btn-white">
+                            Voir la fiche
+                        </a>
+                    </div>
+                </div>
+            </div>
+                <!-- bloc rouge -->
+
+        {% endif %}
+
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

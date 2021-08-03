@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    
+    <h1 class="my-5 text-center">Dashboard Admin</h1>
+    
+    <!--bouton d'analyse de sites-->
+    <div class="d-flex justify-content-around my-5">
+        <a href="{{ path('analyze') }}" class="btn btn-info">
+            <i class="fas fa-stethoscope"></i>
+            Lancer un Diagnostic
+        </a>
+
+    <!--bouton d'ajout d'un site-->
+        <a href="{{ path('admin_new') }}" class="btn btn-success">
+            <i class="fas fa-plus-circle"></i>
+            Ajouter un site
+        </a>
+
+    <!--bouton d'effacement d'historique-->
+        <a href="{{ path('clean') }}" class="btn btn-warning">
+            <i class="fas fa-trash-alt"></i>
+            Effacer l'historique
+        </a>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NOM</th>
+            <th scope="col">URL</th>
+            <th scope="col">ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for website in websites %}
+                <tr>
+                    <th>{{ website.id }}</th>
+                    <td>{{ website.name }}</td>
+                    <td>{{ website.url }}</td>
+                    <td>
+                        <a href="{{ path('admin_remove', { 
+                            'id' : website.id
+                            }) }}" class="btn btn-danger">
+                            <i class="far fa-trash-alt"></i>
+                            Supprimer 
+                        </a>
+
+                        <a href="{{ path('admin_edit', { 
+                            'id' : website.id
+                            }) }}" class="btn btn-info">
+                            <i class="far fa-edit"></i>
+                            Editer
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}
